@@ -18,8 +18,9 @@ fn main() {
 
         // stdin() function handles standard input
         io::stdin()
-        // calls the read_line method on standard input handle to get input from the user  
+        /* calls the read_line method on standard input handle to get input from the user. The string argument needs to be mutable so the method can change the string’s content by adding the user input. The & indicates the argument is a reference */
             .read_line(&mut guess)
+            // built in error handling 
             .expect("Failed to read line");
 
         let guess: u32 = match guess.trim().parse() {
@@ -30,6 +31,7 @@ fn main() {
         println!("You guessed: {}", guess);
         
         // create different outcomes based on guess
+        // compares guess and secret_number
         match guess.cmp(&secret_number) {
             Ordering::Less => println!("Too small!"),
             Ordering::Greater => println!("Too big!"),
